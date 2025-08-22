@@ -1,0 +1,52 @@
+# --- Node.js dependencies ---
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# --- Build outputs ---
+.build/
+dist/
+.esbuild/
+
+# --- TypeScript build cache ---
+*.tsbuildinfo
+
+# --- Serverless Framework artifacts ---
+.serverless/
+.serverless_plugins/
+.secrets/
+
+# --- Environment variables (NEVER commit secrets) ---
+.env
+.env.*
+*.env
+
+# --- Logs ---
+logs/
+*.log
+*.csv
+*.dat
+*.out
+*.pid
+*.gz
+
+# --- Coverage / testing ---
+coverage/
+.nyc_output/
+jest-cache/
+jest-html-reporters-*
+
+# --- Editor / IDE junk ---
+.vscode/
+.idea/
+.DS_Store
+*.swp
+*.swo
+
+# --- OS junk ---
+Thumbs.db
