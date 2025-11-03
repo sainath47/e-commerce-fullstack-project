@@ -1,14 +1,66 @@
+org: sainath
 service: ecommerce
 
 provider:
   name: aws
   runtime: nodejs20.x
+  region: ap-south-1
+  environment:
+    TABLE_NAME: ${self:service}-products-${sls:stage}
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:PutItem
+        - dynamodb:GetItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+        - dynamodb:Scan
+        - dynamodb:Query
+      Resource: arn:aws:dynamodb:${aws:region}:${aws:accountId}:table/${self:service}-products-${sls:stage}
+
+plugins:
+  - serverless-offline
+
+custom:
+  serverless-offline:
+     httpPort: 8080
+
 
 functions:
-  hello:
-    handler: src/handler.hello
+  getProducts:
+    handler: src/handler.getProducts
     events:
       - http:
-          path: hello
+          path: products
           method: get
           cors: true
+
+  addProduct:
+    handler: src/handler.addProduct
+    events:
+      - http:
+          path: products
+          method: post
+          cors: true
+
+  seedProducts:
+    handler: src/handler.seedProducts
+    events:
+      - http:
+          path: seed
+          method: post
+          cors: true
+
+resources:
+  Resources:
+    ProductsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:service}-products-${sls:stage}
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
