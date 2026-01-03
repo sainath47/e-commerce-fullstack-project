@@ -2,7 +2,7 @@ name: Ecommerce Fullstack Project
 
 on:
   push:
-    branches: [master, main] # Covers both old and new naming conventions
+    branches: [master, main] # Covers both branch naming possibilities
   pull_request:
     branches: [master, main]
 
@@ -10,17 +10,23 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4 # Updated to v4
-      
+      - uses: actions/checkout@v4
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-          cache: 'npm' # This speeds up future runs
-          cache-dependency-path: frontend/package-lock.json
 
-      - name: Install Frontend Dependencies
-        run: npm install --prefix frontend
+      # Step 1: Install & Build Backend
+      - name: Install Backend Deps
+        run: npm install
+        working-directory: ./backend
+
+      # Step 2: Install & Build Frontend
+      - name: Install Frontend Deps
+        run: npm install
+        working-directory: ./frontend
 
       - name: Build Frontend
-        run: npm run build --prefix frontend
+        run: npm run build
+        working-directory: ./frontend
