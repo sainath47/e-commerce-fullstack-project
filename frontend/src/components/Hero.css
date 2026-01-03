@@ -1,0 +1,15 @@
+/* 2. The image inside the container */
+.zoom-image {
+    width: 100%;          /* Makes the image responsive within its container */
+    height: auto;
+    /* Adds a smooth animation effect over 0.3 seconds */
+    transition: transform 0.3s ease;
+    display: block;
+}
+
+/* 3. The zoom effect on hover */
+.myImage:hover .zoom-image {
+    transform: scale(1.2); /* Zooms the image to 120% of its size */
+    cursor: pointer;       /* Changes the cursor to a pointer (hand) on hover */
+}
+
