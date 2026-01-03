@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Star, Heart } from "lucide-react";
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 
 const products = [
   {

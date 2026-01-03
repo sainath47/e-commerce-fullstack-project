@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
-import sainath from "/sainath.webp?url";
+import sainath from "/sainath.webp";
 import './Hero.css'
 
 export default function Hero() {
