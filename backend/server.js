@@ -12,6 +12,11 @@ app.get("/", async(req,res)=>{
     return res.status(200).json({products})
 })
 
+
+
 app.listen(8000, ()=>{
     console.log("server listening at 8000")
 })
+
+
+
