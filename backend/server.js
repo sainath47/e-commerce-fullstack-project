@@ -4,6 +4,8 @@ const cors = require('cors')
 app.use(cors())
 
 
+
+
 app.get("/", async(req,res)=>{
     let response = await fetch('https://dummyjson.com/products')
 
