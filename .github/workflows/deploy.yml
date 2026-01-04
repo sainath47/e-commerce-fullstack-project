@@ -147,8 +147,8 @@ jobs:
           script: |
             echo "Deploying new backend version..."
             docker pull ${{ secrets.DOCKER_USERNAME }}/mern-backend:latest
-            docker-compose -f /opt/mern-app/docker-compose.yml pull backend
-            docker-compose -f /opt/mern-app/docker-compose.yml up -d backend
+            docker compose -f /opt/mern-app/docker-compose.yml pull backend
+            docker compose -f /opt/mern-app/docker-compose.yml up -d backend
             docker image prune -f
 
   # ── Optional: Run E2E / integration tests when something meaningful changed ──
